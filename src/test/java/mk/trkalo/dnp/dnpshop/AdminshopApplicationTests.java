@@ -1,4 +1,4 @@
-package mk.trkalo.dnp.adminshop;
+package mk.trkalo.dnp.dnpshop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
