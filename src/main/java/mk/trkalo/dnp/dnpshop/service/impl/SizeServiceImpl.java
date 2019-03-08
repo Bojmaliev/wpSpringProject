@@ -5,7 +5,6 @@ import mk.trkalo.dnp.dnpshop.repository.SizeRepository;
 import mk.trkalo.dnp.dnpshop.service.SizeService;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -18,12 +17,18 @@ public class SizeServiceImpl implements SizeService {
 
 
     @Override
+    public Size findById(int id) {
+        return sizeRepository.findById(id).orElseThrow(()-> new RuntimeException("Оваа големина не постои."));
+    }
+
+    @Override
     public List<Size> findAll() {
         return sizeRepository.findAll();
     }
 
     @Override
     public Size save(Size s) {
+       if(sizeRepository.existsByName(s.getName()))throw new RuntimeException("Големина со такво име веќе постои.");
         return sizeRepository.save(s);
     }
 

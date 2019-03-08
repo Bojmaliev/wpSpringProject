@@ -18,12 +18,18 @@ public class TypeServiceImpl implements TypeService {
 
 
     @Override
+    public Type findById(int id) {
+        return typeRepository.findById(id).orElseThrow(()-> new RuntimeException("Овој тип не постои."));
+    }
+
+    @Override
     public List<Type> findAll() {
         return typeRepository.findAll();
     }
 
     @Override
     public Type save(Type s) {
+        if(typeRepository.existsByName(s.getName()))throw new RuntimeException("Тип со такво име веќе постои.");
         return typeRepository.save(s);
     }
 

@@ -10,7 +10,6 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
-    @Column(unique = true)
     String name;
 
     public Type(){}

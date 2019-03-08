@@ -12,8 +12,9 @@ public class ProductionProductVarient {
     private int id;
     @ManyToOne
     @NotNull
-    private ProductVarient productVarientId;
+    private ProductVariant productVariantId;
     private int quantity;
     private LocalDateTime dateTime;
+
 
 }

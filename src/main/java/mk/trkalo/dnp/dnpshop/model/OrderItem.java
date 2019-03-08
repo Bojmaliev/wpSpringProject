@@ -27,8 +27,8 @@ public class OrderItem {
         return price;
     }
 
-    public ProductVarient getProductVarient() {
-        return id.getProductVarient();
+    public ProductVariant getProductVarient() {
+        return id.getProductVariant();
     }
     public Order getOrder(){
         return id.getOrder();
@@ -46,22 +46,22 @@ class OrderItemId implements Serializable {
     private Order order;
     @ManyToOne
     @NotNull
-    private ProductVarient productVarient;
+    private ProductVariant productVariant;
 
     public Order getOrder() {
         return order;
     }
 
-    public ProductVarient getProductVarient() {
-        return productVarient;
+    public ProductVariant getProductVariant() {
+        return productVariant;
     }
 
     public void setOrder(Order order) {
         this.order = order;
     }
 
-    public void setProductVarient(ProductVarient productVarient) {
-        this.productVarient = productVarient;
+    public void setProductVariant(ProductVariant productVariant) {
+        this.productVariant = productVariant;
     }
 
     @Override
@@ -70,12 +70,12 @@ class OrderItemId implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         OrderItemId that = (OrderItemId) o;
         return Objects.equals(order, that.order) &&
-                Objects.equals(productVarient, that.productVarient);
+                Objects.equals(productVariant, that.productVariant);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(order, productVarient);
+        return Objects.hash(order, productVariant);
     }
 }
 

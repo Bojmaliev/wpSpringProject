@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/sizes", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SizeResource {
     private final SizeService sizeService;
@@ -25,5 +26,6 @@ public class SizeResource {
     public List<Size> findAll(){
         return sizeService.findAll();
     }
+
 
 }
