@@ -4,4 +4,5 @@ public class ProductVariantDto {
     public int sizeId;
     public int typeId;
     public int price;
+    public boolean canOrder;
 }

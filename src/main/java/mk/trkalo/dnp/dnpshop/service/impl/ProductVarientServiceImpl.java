@@ -28,17 +28,37 @@ public class ProductVarientServiceImpl implements ProductVarientService {
     }
 
     @Override
-    public ProductVariant saveProductVariant(ProductVariant p) {
+    public ProductVariant findById(int id) {
+            return productVarientRepository.findById(id).orElseThrow(()-> new RuntimeException("Варијантата не постои."));
+
+    }
+
+    @Override
+    public ProductVariant save(ProductVariant p) {
         return productVarientRepository.save(p);
     }
 
     @Override
-    public ProductVariant saveProductVariant(int productId, ProductVariantDto p) {
+    public ProductVariant save(int productId, ProductVariantDto p) {
         Product product = productService.findById(productId);
         Size size = sizeService.findById(p.sizeId);
         Type type = typeService.findById(p.typeId);
         if(productVarientRepository.existsByProductAndSizeAndType(product, size, type)) throw new RuntimeException("Веќе постои таква комбинација");
-        return productVarientRepository.save(new ProductVariant(product, size, type, p.price));
+        return productVarientRepository.save(new ProductVariant(product, size, type, p.price, p.canOrder));
 
+    }
+
+    @Override
+    public ProductVariant updateById(int id, ProductVariantDto p) {
+        ProductVariant pv = findById(id);
+        pv.setPrice(p.price);
+        pv.setCanOrder(p.canOrder);
+        return productVarientRepository.save(pv);
+    }
+
+    @Override
+    public void deleteById(int index) {
+        findById(index);
+        productVarientRepository.deleteById(index);
     }
 }

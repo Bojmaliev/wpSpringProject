@@ -39,11 +39,11 @@ public class DataLoader {
         typeService.save(new Type("Слатко"));
 
         Product p = productService.saveProduct(new Product("Ајвар", "многу вкусен"));
-        productVarientService.saveProductVariant(new ProductVariant(p, s,t, 200));
-        productVarientService.saveProductVariant(new ProductVariant(p, s1,t, 100));
-        productVarientService.saveProductVariant(new ProductVariant(p, s1,t1, 100));
+        productVarientService.save(new ProductVariant(p, s,t, 200, true));
+        productVarientService.save(new ProductVariant(p, s1,t, 100, true));
+        productVarientService.save(new ProductVariant(p, s1,t1, 100,true));
         Product p1 = productService.saveProduct(new Product("Лутеница", "многу вкусна исто така"));
-        productVarientService.saveProductVariant(new ProductVariant(p1, s1,t1, 70));
+        productVarientService.save(new ProductVariant(p1, s1,t1, 70, true));
     }
 
     //method invoked during the shutdown

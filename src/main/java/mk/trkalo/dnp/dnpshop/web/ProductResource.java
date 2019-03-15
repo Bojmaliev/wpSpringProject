@@ -50,6 +50,18 @@ public class ProductResource {
     @PostMapping("/{id}/variants")
     @ResponseStatus(HttpStatus.CREATED)
     public ProductVariant saveProductVariant(@PathVariable int id, @RequestBody ProductVariantDto p){
-        return productVarientService.saveProductVariant(id, p);
+        return productVarientService.save(id, p);
+    }
+
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PatchMapping("/variants/{index}")
+    public ProductVariant updateProductVariant(@RequestBody ProductVariantDto productVariantDto, @PathVariable int index){
+        return productVarientService.updateById(index, productVariantDto);
+    }
+    @DeleteMapping("/variants/{index}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteProductVariant(@PathVariable("index") int index) {
+        productVarientService.deleteById(index);
+
     }
 }

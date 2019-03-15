@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class ProductVariant {
@@ -25,13 +26,20 @@ public class ProductVariant {
     private Type type;
     @NotNull
     private int price;
+    @OneToMany(mappedBy = "productVariantId")
+    @JsonIgnore
+    private List<ProductionProductVarient> productionProductVarients;
+    private int numberSold;
+    private boolean canOrder;
 
-    public ProductVariant(){}
-    public ProductVariant(Product p, Size s, Type t, int price){
+    public ProductVariant(){this.canOrder=true; numberSold=0;}
+    public ProductVariant(Product p, Size s, Type t, int price, boolean canOrder){
         this.product = p;
         this.size = s;
         this.type = t;
         this.price = price;
+        this.canOrder = canOrder;
+        this.numberSold = 0;
     }
     public int getId() {
         return id;
@@ -47,6 +55,27 @@ public class ProductVariant {
 
     public int getPrice() {
         return price;
+    }
+
+    public void setPrice(int price){
+        this.price = price;
+    }
+    @Transient
+    public int getNumberProduced(){
+        return productionProductVarients.stream().mapToInt(ProductionProductVarient::getQuantity).sum();
+    }
+    public int getNumberSold(){
+        return this.numberSold;
+    }
+
+    @Transient
+    public int getNumberAvailable(){
+        return getNumberProduced()-getNumberSold();
+    }
+    public boolean isCanOrder(){return canOrder;}
+
+    public void setCanOrder(boolean canOrder){
+        this.canOrder = canOrder;
     }
 
     public Product getProduct() {

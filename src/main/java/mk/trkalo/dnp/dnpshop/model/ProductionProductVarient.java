@@ -16,5 +16,11 @@ public class ProductionProductVarient {
     private int quantity;
     private LocalDateTime dateTime;
 
+    public int getQuantity(){
+        return quantity;
+    }
+    private LocalDateTime getDateTime(){
+        return dateTime;
+    }
 
 }
