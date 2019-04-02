@@ -17,7 +17,7 @@ public class SizeServiceImpl implements SizeService {
 
 
     @Override
-    public Size findById(int id) {
+    public Size findById(Long id) {
         return sizeRepository.findById(id).orElseThrow(()-> new RuntimeException("Оваа големина не постои."));
     }
 

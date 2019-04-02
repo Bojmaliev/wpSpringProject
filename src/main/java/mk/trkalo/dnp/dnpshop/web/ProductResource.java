@@ -4,7 +4,6 @@ import mk.trkalo.dnp.dnpshop.dto.ProductVariantDto;
 import mk.trkalo.dnp.dnpshop.model.Product;
 import mk.trkalo.dnp.dnpshop.model.ProductVariant;
 import mk.trkalo.dnp.dnpshop.service.ProductService;
-import mk.trkalo.dnp.dnpshop.service.ProductVarientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,12 +16,10 @@ import java.util.List;
 @RequestMapping(value = "/api/products", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProductResource {
     private final ProductService productService;
-    private final ProductVarientService productVarientService;
 
     @Autowired
-    public ProductResource(ProductService productService, ProductVarientService productVarientService) {
+    public ProductResource(ProductService productService) {
         this.productService = productService;
-        this.productVarientService = productVarientService;
     }
 
     @GetMapping
@@ -38,30 +35,36 @@ public class ProductResource {
 
     @DeleteMapping("/{index}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void delete(@PathVariable("index") int index) {
+    public void delete(@PathVariable("index") Long index) {
         productService.deleteById(index);
 
     }
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PatchMapping("/{index}")
-    public Product updateProduct(@RequestBody Product student, @PathVariable int index){
+    public Product updateProduct(@RequestBody Product student, @PathVariable Long index){
         return productService.updateById(student, index);
     }
-    @PostMapping("/{id}/variants")
+
+    //product variants
+    @PostMapping("/{productId}/variants")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductVariant saveProductVariant(@PathVariable int id, @RequestBody ProductVariantDto p){
-        return productVarientService.save(id, p);
+    public Product saveProductVariant(@PathVariable Long productId, @RequestBody ProductVariantDto p){
+        return productService.addProductVariant(productId, p);
     }
 
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @PatchMapping("/variants/{index}")
-    public ProductVariant updateProductVariant(@RequestBody ProductVariantDto productVariantDto, @PathVariable int index){
-        return productVarientService.updateById(index, productVariantDto);
+    @PatchMapping("/{productId}/variants/{variantId}")
+    public Product updateProductVariant(@PathVariable Long productId, @RequestBody ProductVariantDto productVariantDto, @PathVariable Long variantId){
+        return productService.updateProductVariant(productId, variantId, productVariantDto);
     }
-    @DeleteMapping("/variants/{index}")
+
+    @DeleteMapping("/{productId}/variants/{variantId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteProductVariant(@PathVariable("index") int index) {
-        productVarientService.deleteById(index);
+    public void deleteProductVariant(@PathVariable Long productId, @PathVariable Long variantId) {
+        productService.deleteProductVariant(productId, variantId);
 
     }
+
+
+
 }

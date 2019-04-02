@@ -10,7 +10,13 @@ public interface ProductService {
     List<Product> findAllProducts();
     Product saveProduct(Product p);
     void deleteAllProducts();
-    void deleteById(int id);
-    Product findById(int id);
-    Product updateById(Product student, int index);
+    void deleteById(Long id);
+    Product findById(Long id);
+    Product updateById(Product student, Long index);
+
+    Product addProductVariant(Long productId, ProductVariantDto p);
+
+    Product updateProductVariant(Long productId, Long variantId, ProductVariantDto productVariantDto);
+
+    void deleteProductVariant(Long productId, Long variantId);
 }

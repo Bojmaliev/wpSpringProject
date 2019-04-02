@@ -8,14 +8,14 @@ import javax.validation.constraints.NotNull;
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @NotNull
     String name;
 
     public Type(){}
     public Type(String name){this.name = name;}
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public String getName(){

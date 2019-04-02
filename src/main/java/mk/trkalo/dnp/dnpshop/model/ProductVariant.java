@@ -13,35 +13,30 @@ public class ProductVariant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @ManyToOne
-    @NotNull
-    @JsonIgnore
-    private Product product;
+    private Long id;
     @ManyToOne
     @NotNull
     private Size size;
     @ManyToOne
     @NotNull
     private Type type;
+
     @NotNull
     private int price;
-    @OneToMany(mappedBy = "productVariantId")
-    @JsonIgnore
-    private List<ProductionProductVarient> productionProductVarients;
-    private int numberSold;
-    private boolean canOrder;
 
-    public ProductVariant(){this.canOrder=true; numberSold=0;}
-    public ProductVariant(Product p, Size s, Type t, int price, boolean canOrder){
-        this.product = p;
+    private int numberProduced =0;
+    private int numberSold = 0;
+    private Boolean canOrder = true;
+
+    public ProductVariant(){}
+    public ProductVariant(Size s, Type t, int price, Boolean canOrder){
         this.size = s;
         this.type = t;
-        this.price = price;
+        setPrice(price);
         this.canOrder = canOrder;
-        this.numberSold = 0;
+
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -58,27 +53,31 @@ public class ProductVariant {
     }
 
     public void setPrice(int price){
+        if(price < 0) throw new RuntimeException("Цената неможе да биде негативен број");
         this.price = price;
     }
-    @Transient
-    public int getNumberProduced(){
-        return productionProductVarients.stream().mapToInt(ProductionProductVarient::getQuantity).sum();
-    }
-    public int getNumberSold(){
+    public Integer getNumberSold(){
         return this.numberSold;
     }
+    @Transient
+    public Integer getNumberProduced(){
+        return this.numberProduced;
+    }
+
+    public void addProduction(int quantity){
+        this.numberProduced+=quantity;
+    }
+    public void addNumberSold(int quantity){this.numberSold +=quantity;}
+
 
     @Transient
-    public int getNumberAvailable(){
+    public Integer getNumberAvailable(){
         return getNumberProduced()-getNumberSold();
     }
-    public boolean isCanOrder(){return canOrder;}
+    public Boolean isCanOrder(){return canOrder;}
 
-    public void setCanOrder(boolean canOrder){
+    public void setCanOrder(Boolean canOrder){
         this.canOrder = canOrder;
     }
 
-    public Product getProduct() {
-        return product;
-    }
 }

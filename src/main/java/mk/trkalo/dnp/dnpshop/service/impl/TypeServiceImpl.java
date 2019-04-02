@@ -18,7 +18,7 @@ public class TypeServiceImpl implements TypeService {
 
 
     @Override
-    public Type findById(int id) {
+    public Type findById(Long id) {
         return typeRepository.findById(id).orElseThrow(()-> new RuntimeException("Овој тип не постои."));
     }
 

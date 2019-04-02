@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 public class Size {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @NotNull
     private String name;
 
@@ -16,7 +16,7 @@ public class Size {
         this.name = name;
     }
 
-    public int getId(){ return id;}
+    public Long getId(){ return id;}
     public String getName(){
         return name;
     }

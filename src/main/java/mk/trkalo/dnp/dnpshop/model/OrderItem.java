@@ -1,81 +1,48 @@
 package mk.trkalo.dnp.dnpshop.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Objects;
+
 @Entity
 public class OrderItem {
-    /* @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private long id;
-     */
-    @EmbeddedId
-    private OrderItemId id;
-    @NotNull
-    private int quantity;
-    @NotNull
-    private int price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public ProductVariant getProductVarient() {
-        return id.getProductVariant();
-    }
-    public Order getOrder(){
-        return id.getOrder();
-    }
-    @Transient
-    public int getTotalPrice(){
-        return quantity*price;
-    }
-}
-
-@Embeddable
-class OrderItemId implements Serializable {
-    @ManyToOne
-    @JsonIgnore
-    private Order order;
     @ManyToOne
     @NotNull
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private ProductVariant productVariant;
+    @NotNull
+    private Integer quantity;
+    @NotNull
+    private Integer price;
 
-    public Order getOrder() {
-        return order;
-    }
+    public Integer getQuantity() {return quantity;}
+    public Integer getPrice() { return price;  }
+    public ProductVariant getProductVarient() { return productVariant;}
 
-    public ProductVariant getProductVariant() {
-        return productVariant;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public void setProductVariant(ProductVariant productVariant) {
-        this.productVariant = productVariant;
+    @Transient
+    public Integer getTotalPrice(){
+        return quantity*price;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderItemId that = (OrderItemId) o;
-        return Objects.equals(order, that.order) &&
-                Objects.equals(productVariant, that.productVariant);
+        OrderItem orderItem = (OrderItem) o;
+        return Objects.equals(id, orderItem.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(order, productVariant);
+        return Objects.hash(id);
     }
 }
+
 
