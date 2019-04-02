@@ -13,6 +13,7 @@ public class Product {
     private Long id;
 
     @NotNull(message = "Името на продуктот е задолжително")
+
     private String name;
     private String description;
 
@@ -22,7 +23,7 @@ public class Product {
 
     public Product(){}
     public Product(String name, String description){
-        this.name=name;
+        this.setName(name);
         this.description=description;
     }
     public Long getId() {

@@ -35,6 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveProduct(Product p) {
+        if(p.getName().length() < 4) throw new RuntimeException("Името на продуктот мора да има барем 4 карактери");
         if(productRepository.existsByName(p.getName()))throw new RuntimeException("Продукт со вакво име веќе постои.");
         return productRepository.save(p);
     }
