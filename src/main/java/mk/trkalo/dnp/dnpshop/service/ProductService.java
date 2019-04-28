@@ -17,6 +17,5 @@ public interface ProductService {
     Product addProductVariant(Long productId, ProductVariantDto p);
 
     Product updateProductVariant(Long productId, Long variantId, ProductVariantDto productVariantDto);
-
     void deleteProductVariant(Long productId, Long variantId);
 }

@@ -1,46 +1,52 @@
 package mk.trkalo.dnp.dnpshop.model;
 
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    public Long id;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="order_id")
-    private List<OrderItem> orderItemList = new ArrayList<>();
+    public Set<OrderItem> orderItemList = new TreeSet<>();
 
     @ManyToOne
-    @OnDelete(action= OnDeleteAction.NO_ACTION)
-    private User user;
+    public User user;
 
-    private HashMap<String, Address> shippingAddresses = new HashMap<>();
+    public HashMap<String, Address> shippingAddresses = new HashMap<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="order_id")
-    private List<OrderStatus> orderStatuses;
+    public Set<OrderStatus> orderStatuses = new TreeSet<>();
+
+    @OneToOne
+    public OrderStatus currentStatus;
 
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private ShippingMethod shippingMethod;
+    public ShippingMethod shippingMethod;
 
-    private LocalDateTime created;
+    public String description;
 
-    private String description;
-
+    public void addItemToOrder(OrderItem item){
+        orderItemList.add(item);
+    }
+    public void addOrderStatus(User user, Status status){
+        OrderStatus os = OrderStatus.create(status, user);
+        orderStatuses.add(os);
+        currentStatus = os;
+    }
+    public void makeOrderInFuture(User user, LocalDateTime dateTimeShouldBeDone){
+        OrderStatus os = OrderStatus.createInFuture(user, dateTimeShouldBeDone);
+        orderStatuses.add(os);
+        currentStatus = os;
+    }
     @Transient
     public int getPrice(){
         int sum=0;
@@ -49,5 +55,18 @@ public class Order {
         }
         return sum;
     }
+    private Order(){
+    }
 
+    public void connectWithUser(User user){
+        if(this.user != null) throw new RuntimeException("Нарачката е веќе поврзана со корисник");
+        this.user = user;
+    }
+
+    public static Order createEmptyOrder(User userCreated){
+        Order order = new Order();
+        order.addOrderStatus(userCreated, Status.CONSTRUCTED);
+
+        return order;
+    }
 }

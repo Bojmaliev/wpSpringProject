@@ -10,46 +10,31 @@ import javax.validation.constraints.NotNull;
 public abstract class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
     @ManyToOne
     @JsonIgnore
     @NotNull
-    private User user;
+    public User user;
     @NotNull
-    private String city;
-    private String municipality;
-    private String description;
+    @ManyToOne
+    public City city;
 
-    public User getUser() {
-        return user;
-    }
+    public String municipality;
 
-    public void setUser(User user) {
+    public String description;
+
+    public Address(){}
+    public Address(User user, City city){
         this.user = user;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
         this.city = city;
     }
-
-    public String getMunicipality() {
-        return municipality;
-    }
-
-    public void setMunicipality(String municipality) {
+    void addMunicipality(String municipality){
         this.municipality = municipality;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
+    void addDescription(String description){
         this.description = description;
     }
+
+
 }
 

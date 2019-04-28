@@ -27,6 +27,11 @@ public class ProductResource {
         return productService.findAllProducts();
     }
 
+    @GetMapping("/{id}")
+    public Product findProductById(@PathVariable Long id){
+        return productService.findById(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Product saveProduct(@RequestBody Product p){

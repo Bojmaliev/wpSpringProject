@@ -49,6 +49,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean hasPhoneNumber(Long userId, String phoneNumber) {
         User user = findById(userId);
-        return user.getPhoneNumbers().contains(phoneNumber);
+        return user.phoneNumbers.contains(phoneNumber);
     }
 }

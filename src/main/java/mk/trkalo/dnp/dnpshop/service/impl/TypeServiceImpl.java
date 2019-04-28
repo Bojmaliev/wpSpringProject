@@ -29,7 +29,7 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public Type save(Type s) {
-        if(typeRepository.existsByName(s.getName()))throw new RuntimeException("Тип со такво име веќе постои.");
+        if(typeRepository.existsByName(s.name))throw new RuntimeException("Тип со такво име веќе постои.");
         return typeRepository.save(s);
     }
 

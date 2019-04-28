@@ -8,23 +8,20 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-public class OrderItem {
+public class OrderItem implements Comparable<OrderItem>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     @ManyToOne
     @NotNull
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private ProductVariant productVariant;
-    @NotNull
-    private Integer quantity;
-    @NotNull
-    private Integer price;
+    public ProductVariant productVariant;
 
-    public Integer getQuantity() {return quantity;}
-    public Integer getPrice() { return price;  }
-    public ProductVariant getProductVarient() { return productVariant;}
+    @NotNull
+    public Integer quantity;
+
+    @NotNull
+    public Integer price;
 
     @Transient
     public Integer getTotalPrice(){
@@ -42,6 +39,11 @@ public class OrderItem {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public int compareTo(OrderItem o) {
+        return id.compareTo(o.id);
     }
 }
 

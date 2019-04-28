@@ -9,9 +9,11 @@ import javax.persistence.Id;
 public class ShippingMethod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
-    private String name;
+    public String name;
 
-    private boolean active=true;
+    public Integer minOrderPrice=0;
+
+    public boolean active=true;
 }

@@ -28,7 +28,7 @@ public class SizeServiceImpl implements SizeService {
 
     @Override
     public Size save(Size s) {
-       if(sizeRepository.existsByName(s.getName()))throw new RuntimeException("Големина со такво име веќе постои.");
+       if(sizeRepository.existsByName(s.name))throw new RuntimeException("Големина со такво име веќе постои.");
         return sizeRepository.save(s);
     }
 

@@ -1,28 +1,46 @@
 package mk.trkalo.dnp.dnpshop.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import mk.trkalo.dnp.dnpshop.model.views.OrderViews;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 
 @Entity
-public class OrderStatus {
+public class OrderStatus implements Comparable<OrderStatus> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    public Status status;
 
-    private LocalDateTime dateTime;
+    public LocalDateTime dateTime;
 
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private User userMadeChange;
+    @JsonIgnoreProperties({"phoneNumbers", "addresses", "email"})
+    public User userMadeChange;
 
+    private OrderStatus(){
+    }
+    public static OrderStatus create(Status status, User userMadeChange){
+        OrderStatus os = new OrderStatus();
+        os.status = status;
+        os.dateTime = LocalDateTime.now();
+        os.userMadeChange = userMadeChange;
+        return os;
+    }
+    public static OrderStatus createInFuture(User userMadeChange, LocalDateTime dateTime){
+        OrderStatus os = new OrderStatus();
+        os.status = Status.IN_FUTURE;
+        os.userMadeChange=userMadeChange;
+        os.dateTime = dateTime;
+        return os;
+    }
+
+    @Override
+    public int compareTo(OrderStatus o) {
+        return dateTime.compareTo(o.dateTime);
+    }
 }
