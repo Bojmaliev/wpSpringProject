@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class ShippingMethod {
@@ -15,5 +16,12 @@ public class ShippingMethod {
 
     public Integer minOrderPrice=0;
 
+
     public boolean active=true;
+
+    private ShippingMethod(){
+    }
+    public ShippingMethod(String name){
+        this.name = name;
+    }
 }

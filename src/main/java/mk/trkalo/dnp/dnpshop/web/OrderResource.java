@@ -2,7 +2,6 @@ package mk.trkalo.dnp.dnpshop.web;
 
 import mk.trkalo.dnp.dnpshop.model.Order;
 import mk.trkalo.dnp.dnpshop.model.User;
-import mk.trkalo.dnp.dnpshop.model.views.OrderViews;
 import mk.trkalo.dnp.dnpshop.service.OrderService;
 import mk.trkalo.dnp.dnpshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

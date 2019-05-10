@@ -10,10 +10,14 @@ public class Size {
     public Long id;
     @NotNull
     public String name;
+    public String size;
 
     public Size(){}
     public Size(String name){
         this.name = name;
     }
-
+    public Size(String name, String size){
+        this.name = name;
+        this.size = size;
+    }
 }

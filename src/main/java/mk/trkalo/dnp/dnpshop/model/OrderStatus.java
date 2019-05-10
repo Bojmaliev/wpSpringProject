@@ -1,7 +1,8 @@
 package mk.trkalo.dnp.dnpshop.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import mk.trkalo.dnp.dnpshop.model.views.OrderViews;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

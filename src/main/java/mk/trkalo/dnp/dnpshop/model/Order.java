@@ -20,7 +20,8 @@ public class Order {
     @ManyToOne
     public User user;
 
-    public HashMap<String, Address> shippingAddresses = new HashMap<>();
+    @ManyToOne
+    public Address address;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="order_id")

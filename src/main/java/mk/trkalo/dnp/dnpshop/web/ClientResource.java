@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -26,5 +27,10 @@ public class ClientResource {
     @GetMapping("/{id}")
     public User findById(@PathVariable Long id){
         return userService.findById(id);
+    }
+
+    @GetMapping("/search/{query}")
+    public List<User> searchByWhatEver(@PathVariable String query){
+        return userService.findByNameLikeOrPhoneNumbers(query);
     }
 }

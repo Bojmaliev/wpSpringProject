@@ -5,6 +5,8 @@ import mk.trkalo.dnp.dnpshop.repository.CityRepository;
 import mk.trkalo.dnp.dnpshop.service.CityService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CityServiceImpl implements CityService {
 
@@ -24,6 +26,11 @@ public class CityServiceImpl implements CityService {
     @Override
     public City findById(Long id) {
         return cityRepository.findById(id).orElseThrow(()-> new RuntimeException("Градот не е пронајден."));
+    }
+
+    @Override
+    public List<City> findAll() {
+        return cityRepository.findAll();
     }
 
 

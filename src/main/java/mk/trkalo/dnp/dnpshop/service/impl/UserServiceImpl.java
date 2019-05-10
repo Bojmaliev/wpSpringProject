@@ -3,9 +3,13 @@ package mk.trkalo.dnp.dnpshop.service.impl;
 import mk.trkalo.dnp.dnpshop.model.User;
 import mk.trkalo.dnp.dnpshop.repository.UserRepository;
 import mk.trkalo.dnp.dnpshop.service.UserService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -50,5 +54,11 @@ public class UserServiceImpl implements UserService {
     public boolean hasPhoneNumber(Long userId, String phoneNumber) {
         User user = findById(userId);
         return user.phoneNumbers.contains(phoneNumber);
+    }
+
+    @Override
+    public List<User> findByNameLikeOrPhoneNumbers(String query) {
+        Pageable page = PageRequest.of(0, 10);
+        return userRepository.findWhereNameOrPhoneNumberLike(query, page);
     }
 }
