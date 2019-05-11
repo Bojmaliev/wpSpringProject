@@ -38,15 +38,13 @@ public class Order {
     public void addItemToOrder(OrderItem item){
         orderItemList.add(item);
     }
-    public void addOrderStatus(User user, Status status){
-        OrderStatus os = OrderStatus.create(status, user);
-        orderStatuses.add(os);
-        currentStatus = os;
+
+    public void addOrderStatus(OrderStatus orderStatus){
+        orderStatuses.add(orderStatus);
+        currentStatus = orderStatus;
     }
-    public void makeOrderInFuture(User user, LocalDateTime dateTimeShouldBeDone){
-        OrderStatus os = OrderStatus.createInFuture(user, dateTimeShouldBeDone);
-        orderStatuses.add(os);
-        currentStatus = os;
+    public void shouldBeShipped(User user, LocalDateTime dateTimeShouldBeDone){
+        addOrderStatus(OrderStatus.createShippingStatus(user, dateTimeShouldBeDone));
     }
     @Transient
     public int getPrice(){
@@ -66,8 +64,7 @@ public class Order {
 
     public static Order createEmptyOrder(User userCreated){
         Order order = new Order();
-        order.addOrderStatus(userCreated, Status.CONSTRUCTED);
-
+        order.addOrderStatus(OrderStatus.create(Status.SUBMITED, userCreated));
         return order;
     }
 }

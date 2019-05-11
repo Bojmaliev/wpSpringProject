@@ -32,9 +32,9 @@ public class OrderStatus implements Comparable<OrderStatus> {
         os.userMadeChange = userMadeChange;
         return os;
     }
-    public static OrderStatus createInFuture(User userMadeChange, LocalDateTime dateTime){
+    public static OrderStatus createShippingStatus(User userMadeChange, LocalDateTime dateTime){
         OrderStatus os = new OrderStatus();
-        os.status = Status.IN_FUTURE;
+        os.status = Status.SHOULD_BE_SHIPPED;
         os.userMadeChange=userMadeChange;
         os.dateTime = dateTime;
         return os;
