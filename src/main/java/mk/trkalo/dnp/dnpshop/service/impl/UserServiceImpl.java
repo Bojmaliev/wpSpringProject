@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findByNameLikeOrPhoneNumbers(String query) {
-        Pageable page = PageRequest.of(0, 7);
+        Pageable page = PageRequest.of(0, 8);
         return userRepository.findWhereNameOrPhoneNumberLike(query, page);
     }
 }
