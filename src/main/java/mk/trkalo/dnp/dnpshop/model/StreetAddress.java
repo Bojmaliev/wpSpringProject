@@ -10,8 +10,8 @@ public class StreetAddress extends Address{
 
     private StreetAddress(){}
 
-    public StreetAddress(User user, City city, String streetName, String streetNumber, String additional) {
-        super(user, city);
+    public StreetAddress(City city, String municipality, String description, String streetName, String streetNumber, String additional) {
+        super(city, municipality, description);
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.additional = additional;

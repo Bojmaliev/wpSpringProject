@@ -1,12 +1,17 @@
 package mk.trkalo.dnp.dnpshop.service;
 
+
+import mk.trkalo.dnp.dnpshop.dto.address.AddressDto;
+import mk.trkalo.dnp.dnpshop.dto.address.StreetDto;
 import mk.trkalo.dnp.dnpshop.model.Address;
-import mk.trkalo.dnp.dnpshop.model.ObjectAddress;
-import mk.trkalo.dnp.dnpshop.model.StreetAddress;
+
+import java.util.List;
 
 public interface AddressService {
-    Address save(Address address);
-    StreetAddress save(StreetAddress streetAddress);
-    ObjectAddress save(ObjectAddress objectAddress);
+//    Address save(Address address);
+//    StreetAddress save(StreetAddress streetAddress);
+//    ObjectAddress save(ObjectAddress objectAddress);
     void deleteAll();
+
+    List<Address> saveAddresses(AddressDto address, StreetDto street, String object);
 }

@@ -101,13 +101,6 @@ public class DataLoader {
         City city3 = cityService.save(new City("Неготино"));
         Address a1 = new Address(u1, city, 23.5555,44.4444 );
 
-        ObjectAddress a2 = new ObjectAddress(u1 ,city, "studentski dom");
-        a2.municipality = "Karposh";
-        StreetAddress a3 = new StreetAddress(u1, city, "Moskovksa", "55", "");
-        a3.municipality = "Karposh";
-        addressService.save(a2);
-        addressService.save(a3);
-        addressService.save(a1);
 
         Order o = orderService.createEmptyOrder(u1);
 

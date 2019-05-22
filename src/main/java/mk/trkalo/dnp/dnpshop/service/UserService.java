@@ -1,5 +1,6 @@
 package mk.trkalo.dnp.dnpshop.service;
 
+import mk.trkalo.dnp.dnpshop.dto.NewOrderClientDto;
 import mk.trkalo.dnp.dnpshop.model.User;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface UserService {
     void addPhoneNumber(Long userId, String phoneNumber);
     boolean hasPhoneNumber(Long userId, String phoneNumber);
     List<User> findByNameLikeOrPhoneNumbers(String query);
+
+    User save(NewOrderClientDto newOrderClientDto);
 }

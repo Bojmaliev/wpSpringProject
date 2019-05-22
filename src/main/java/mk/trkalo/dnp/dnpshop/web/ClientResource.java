@@ -1,4 +1,5 @@
 package mk.trkalo.dnp.dnpshop.web;
+import mk.trkalo.dnp.dnpshop.dto.NewOrderClientDto;
 import mk.trkalo.dnp.dnpshop.model.User;
 import mk.trkalo.dnp.dnpshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,11 @@ public class ClientResource {
     @GetMapping("/search/{query}")
     public List<User> searchByWhatEver(@PathVariable String query){
         return userService.findByNameLikeOrPhoneNumbers(query);
+    }
+    @PostMapping
+    public User newOrderClient(@RequestBody NewOrderClientDto newOrderClientDto ){
+        return userService.save(newOrderClientDto);
+
+
     }
 }

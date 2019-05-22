@@ -11,10 +11,6 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-    @ManyToOne
-    @JsonIgnore
-    @NotNull
-    public User user;
     @NotNull
     @ManyToOne
     public City city;
@@ -24,13 +20,13 @@ public class Address {
     public Double longitude;
 
     protected Address(){}
-    public Address(User user, City city){
-        this.user = user;
+    public Address(City city, String municipality, String description){
         this.city = city;
+        this.municipality = municipality;
+        this.description= description;
     }
 
     public Address(User user, City city, Double latitude, Double longitude){
-        this.user = user;
         this.city = city;
         this.latitude = latitude;
         this.longitude = longitude;

@@ -1,11 +1,12 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
+import mk.trkalo.dnp.dnpshop.dto.NewOrderClientDto;
 import mk.trkalo.dnp.dnpshop.model.User;
 import mk.trkalo.dnp.dnpshop.repository.UserRepository;
+import mk.trkalo.dnp.dnpshop.service.AddressService;
 import mk.trkalo.dnp.dnpshop.service.UserService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final AddressService addressService;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, AddressService addressService) {
         this.userRepository = userRepository;
+        this.addressService = addressService;
     }
 
     @Override
@@ -60,5 +63,12 @@ public class UserServiceImpl implements UserService {
     public List<User> findByNameLikeOrPhoneNumbers(String query) {
         Pageable page = PageRequest.of(0, 8);
         return userRepository.findWhereNameOrPhoneNumberLike(query, page);
+    }
+
+    @Override
+    public User save(NewOrderClientDto client) {
+
+        User user = new User(client.name, client.phoneNumbers, addressService.saveAddresses(client.address, client.street, client.object));
+        return userRepository.saveAndFlush(user);
     }
 }

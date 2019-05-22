@@ -8,8 +8,8 @@ public class ObjectAddress extends Address {
     public String objectTitle;
 
     private ObjectAddress(){}
-    public ObjectAddress(User user, City city, String objectTitle) {
-        super(user, city);
+    public ObjectAddress( City city, String municipality, String description, String objectTitle) {
+        super(city, municipality, description);
         this.objectTitle = objectTitle;
     }
 
