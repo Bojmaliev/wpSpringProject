@@ -1,4 +1,4 @@
-package mk.trkalo.dnp.dnpshop.web;
+package mk.trkalo.dnp.dnpshop.web.rest;
 
 import mk.trkalo.dnp.dnpshop.dto.ProductVariantDto;
 import mk.trkalo.dnp.dnpshop.model.Product;

@@ -3,12 +3,13 @@ package mk.trkalo.dnp.dnpshop.model;
 import javax.persistence.Entity;
 
 @Entity
-public class StreetAddress extends Address{
+public class StreetAddress extends Address {
     public String streetName;
     public String streetNumber;
     public String additional;
 
-    private StreetAddress(){}
+    private StreetAddress() {
+    }
 
     public StreetAddress(City city, String municipality, String description, String streetName, String streetNumber, String additional) {
         super(city, municipality, description);

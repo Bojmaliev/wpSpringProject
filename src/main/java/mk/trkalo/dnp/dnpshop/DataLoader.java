@@ -10,6 +10,8 @@ import javax.annotation.PreDestroy;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Component
 public class DataLoader {
@@ -80,15 +82,13 @@ public class DataLoader {
         p3.addProductVariant(new ProductVariant(s1,dzem, 100, true));
         p3 = productService.saveProduct(p3);
 
-        User u1 = u1 = new User();
-        String[] emails = {"mbojmaliev@gmail.com", "marboj4@gmail.com", "marjan.turturov@gmail.com", "kristijanmanchester@gmail.com", "marjan@turturov.mk", "mbojmaliev@trkalo.mk"};
         String [] phoneNumbers = {"078989478", "078377500", "078333333", "078377400", "077736656", "075336859", "078748743", "077777770", "034222456"};
         String [] phoneNumbers1 = {"078119478", "071177500", "071133333", "071177400", "077116656", "075336119", "078741143", "077771170", "034221156"};
         String [] names = {"Martin Bojmaliev", "Marjan Turturov", "Petar Boshkovski", "Petar", "Martin", "Marjan", "Gjorge Bojmaliev", "Kristijan Bojmaliev", "Meri Bojmalieva", "Ela stamkova"};
+        User u1 = new User("Martin");
         for(String name : names) {
-            u1 = new User();
-            u1.email = getRandom(emails);
-            u1.name = name;
+            Set<String> phones = new TreeSet<>();
+            u1 = new User(name);
             u1.addPhoneNumber(getRandom(phoneNumbers));
             u1 = userService.save(u1);
 

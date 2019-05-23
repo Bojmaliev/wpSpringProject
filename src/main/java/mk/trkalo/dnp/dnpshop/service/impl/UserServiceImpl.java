@@ -1,12 +1,16 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
 import mk.trkalo.dnp.dnpshop.dto.NewOrderClientDto;
+import mk.trkalo.dnp.dnpshop.model.LoggedUser;
+import mk.trkalo.dnp.dnpshop.model.Role;
 import mk.trkalo.dnp.dnpshop.model.User;
 import mk.trkalo.dnp.dnpshop.repository.UserRepository;
 import mk.trkalo.dnp.dnpshop.service.AddressService;
 import mk.trkalo.dnp.dnpshop.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +21,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final AddressService addressService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository, AddressService addressService) {
         this.userRepository = userRepository;
@@ -30,6 +36,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
+        return userRepository.save(user);
+    }
+    @Override
+    public LoggedUser save(LoggedUser user) {
+        user.password=passwordEncoder.encode(user.password);
         return userRepository.save(user);
     }
 

@@ -28,32 +28,28 @@ public class User  {
     @JoinColumn(name="user_id")
     public List<Address> addresses = new ArrayList<>();
 
-    public String email;
-
 
     public void addAddress(Address address){
         addresses.add(address);
     }
 
     public void addPhoneNumber(String phoneNumber) {
+        phoneNumber =phoneNumber.replaceAll(" ", "");
+        if(!validatePhoneNumber(phoneNumber)) throw new RuntimeException("Некој од телефонските броеви не е валиден");
         this.phoneNumbers.add(phoneNumber);
     }
 
     public static boolean validatePhoneNumber(String phoneNumber){
         return phoneNumber.matches("[+]?[0123456789]{6,12}");
     }
-
-    public User(){}
-    public User(String name, Set<String> phoneNumbers, List<Address> addresses){
-        Set<String> newPhone = new TreeSet<>();
-        for(String pn: phoneNumbers){
-            String replacedNumber =pn.replaceAll(" ", "");
-            newPhone.add(replacedNumber);
-            if(!validatePhoneNumber(replacedNumber)) throw new RuntimeException("Некој од телефонските броеви не е валиден");
-        }
+    private User(){}
+    public User(String name){
+        this.name=name;
+    }
+    public User(String name, @NotNull Set<String> phoneNumbers, @NotNull List<Address> addresses){
+        for(String pn: phoneNumbers)this.addPhoneNumber(pn);
         this.name = name;
-        this.phoneNumbers=newPhone;
-        this.addresses = addresses;
+        for(Address ad: addresses)this.addAddress(ad);
     }
 
 }
