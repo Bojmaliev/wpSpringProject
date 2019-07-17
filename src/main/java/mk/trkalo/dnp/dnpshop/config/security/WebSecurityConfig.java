@@ -5,6 +5,7 @@ import mk.trkalo.dnp.dnpshop.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -67,13 +68,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**")
+                .antMatchers("/api/auth/**")
                 .permitAll()
 //                .antMatchers(HttpMethod.GET, "/polls/**", "/users/**")
 //                .permitAll()
-                .antMatchers("/admin/**").access("hasAuthority('ROLE_ADMIN')")
-                .anyRequest()
-                .authenticated();
+//                .antMatchers("/admin/**").access("hasAuthority('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.GET, "/api/sizes/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/types/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/products/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/shipping_methods/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/cities/**").permitAll()
+                .antMatchers("/api/me**")
+                .authenticated()
+                .anyRequest().access("hasAuthority('ROLE_ADMIN')");
 
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

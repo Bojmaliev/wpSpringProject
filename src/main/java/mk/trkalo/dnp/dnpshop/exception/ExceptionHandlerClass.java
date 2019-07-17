@@ -1,5 +1,6 @@
 package mk.trkalo.dnp.dnpshop.exception;
 
+import mk.trkalo.dnp.dnpshop.model.payloads.response.ApiResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,6 @@ public class ExceptionHandlerClass {
 
     @ExceptionHandler(value ={ Exception.class})
     public ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request){
-        return new ResponseEntity<>(new CustomResponse(ex.getMessage()), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(new ApiResponse(ex.getMessage(), true), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

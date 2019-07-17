@@ -34,6 +34,10 @@ public class ClientResource {
     public List<User> searchByWhatEver(@PathVariable String query){
         return userService.findByNameLikeOrPhoneNumbers(query);
     }
+    @GetMapping("/search")
+    public List<User> getFirst8(){
+        return userService.findFirst8();
+    }
     @PostMapping
     public User newOrderClient(@RequestBody NewOrderClientDto newOrderClientDto ){
         return userService.save(newOrderClientDto);

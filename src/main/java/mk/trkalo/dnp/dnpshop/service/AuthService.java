@@ -1,4 +1,9 @@
 package mk.trkalo.dnp.dnpshop.service;
 
-public class AuthService {
+import mk.trkalo.dnp.dnpshop.model.payloads.request.LoginRequest;
+
+public interface AuthService {
+
+
+    String login(LoginRequest loginRequest);
 }

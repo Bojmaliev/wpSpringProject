@@ -29,4 +29,19 @@ public class ShippingServiceImpl implements ShippingService {
     public ShippingMethod save(ShippingMethod save) {
         return shippingRepository.save(save);
     }
+
+    @Override
+    public ShippingMethod getDefaultShippingMethod() {
+        return findAllActive().get(0);
+    }
+
+    @Override
+    public ShippingMethod findById(Long shippingId) {
+        return shippingRepository.findById(shippingId).orElseThrow(()-> new RuntimeException("Доставувачкиот метод не постои"));
+    }
+
+    @Override
+    public List<ShippingMethod> findAllActive() {
+        return shippingRepository.findAllByActiveIsTrue();
+    }
 }

@@ -17,7 +17,7 @@ public class AdminshopApplication {
 	public CommandLineRunner setupDefaultUser(UserService service) {
 		LoggedUser user = LoggedUser.createNewAdmin(
 				"Martin Bojmaliev",
-				"mbojmaliev1@gmail.com",
+				"mbojmaliev@gmail.com",
 				"maneken45874587"
 		);
 		return args -> {

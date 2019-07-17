@@ -10,4 +10,10 @@ public interface ShippingService {
     List<ShippingMethod> findAll();
     void deleteAll();
     ShippingMethod save(ShippingMethod save);
+
+    ShippingMethod getDefaultShippingMethod();
+
+    ShippingMethod findById(Long shippingId);
+
+    List<ShippingMethod> findAllActive();
 }

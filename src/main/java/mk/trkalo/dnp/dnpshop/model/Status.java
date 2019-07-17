@@ -1,8 +1,8 @@
 package mk.trkalo.dnp.dnpshop.model;
 
 public enum Status {
-    SUBMITED, // when user submit the order
-    SHOULD_BE_SHIPPED, // the date should be shipped
+    CREATED, //when user created the order
+    SUBMITTED, // when user submit the order
 
     PACKED, // when is packed
     SHIPPED,  // when is shipped

@@ -77,6 +77,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findFirst8() {
+        Pageable page = PageRequest.of(0, 8);
+        return userRepository.findAll(page).getContent();
+    }
+
+
+    @Override
     public User save(NewOrderClientDto client) {
 
         User user = new User(client.name, client.phoneNumbers, addressService.saveAddresses(client.address, client.street, client.object));

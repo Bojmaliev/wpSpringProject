@@ -38,7 +38,7 @@ public class Product {
         this.description = description;
     }
     public boolean hasProductVariantBySizeAndType(Size s, Type t){
-        return productVariants.stream().anyMatch(a -> a.getSize() == s && a.getType() == t);
+        return productVariants.stream().anyMatch(a -> a.size == s && a.type == t);
     }
 
     public String getName() {
@@ -58,7 +58,7 @@ public class Product {
     }
 
     public ProductVariant getProductVariantById(Long productVariantId){
-        return productVariants.stream().filter(a->a.getId() == productVariantId).findFirst().orElseThrow(()-> new RuntimeException("Таква варијанта не постои"));
+        return productVariants.stream().filter(a->a.id == productVariantId).findFirst().orElseThrow(()-> new RuntimeException("Таква варијанта не постои"));
     }
     public void removeProductVariant(Long productVariantId){
         productVariants.remove(getProductVariantById(productVariantId));

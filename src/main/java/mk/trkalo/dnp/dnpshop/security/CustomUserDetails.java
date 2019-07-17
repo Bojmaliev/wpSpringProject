@@ -1,5 +1,6 @@
 package mk.trkalo.dnp.dnpshop.security;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import mk.trkalo.dnp.dnpshop.model.LoggedUser;
 import mk.trkalo.dnp.dnpshop.model.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
     private String username;
+    @JsonIgnore
     private String password;
     private Long id;
     Collection<? extends GrantedAuthority> authorities;

@@ -100,11 +100,8 @@ public class DataLoader {
         City city2 = cityService.save(new City("Струмица"));
         City city3 = cityService.save(new City("Неготино"));
         Address a1 = new Address(u1, city, 23.5555,44.4444 );
-
-
-        Order o = orderService.createEmptyOrder(u1);
-
-        orderService.connectOrderWithUser(o.id, u1.id);
+        u1.addAddress(a1);
+        userService.save(u1);
 
     }
     public static String getRandom(String[] array) {

@@ -13,7 +13,7 @@ public interface ProductService {
     void deleteById(Long id);
     Product findById(Long id);
     Product updateById(Product student, Long index);
-
+    ProductVariant findProductVariantById(Long id);
     Product addProductVariant(Long productId, ProductVariantDto p);
 
     Product updateProductVariant(Long productId, Long variantId, ProductVariantDto productVariantDto);

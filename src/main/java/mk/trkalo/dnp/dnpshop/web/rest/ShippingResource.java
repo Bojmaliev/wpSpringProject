@@ -25,7 +25,7 @@ public class ShippingResource {
 
     @GetMapping
     public List<ShippingMethod> findAll(){
-        return shippingService.findAll();
+        return shippingService.findAllActive();
     }
 
 

@@ -13,16 +13,16 @@ public class ProductVariant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
     @ManyToOne
     @NotNull
-    private Size size;
+    public Size size;
     @ManyToOne
     @NotNull
-    private Type type;
+    public Type type;
 
     @NotNull
-    private int price;
+    public Integer price;
 
     private int numberProduced =0;
     private int numberSold = 0;
@@ -35,21 +35,6 @@ public class ProductVariant {
         setPrice(price);
         this.canOrder = canOrder;
 
-    }
-    public Long getId() {
-        return id;
-    }
-
-    public Size getSize() {
-        return size;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public int getPrice() {
-        return price;
     }
 
     public void setPrice(int price){

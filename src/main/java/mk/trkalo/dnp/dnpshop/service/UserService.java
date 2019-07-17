@@ -17,6 +17,7 @@ public interface UserService {
     void addPhoneNumber(Long userId, String phoneNumber);
     boolean hasPhoneNumber(Long userId, String phoneNumber);
     List<User> findByNameLikeOrPhoneNumbers(String query);
+    List<User> findFirst8();
 
     User save(NewOrderClientDto newOrderClientDto);
 }

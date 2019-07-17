@@ -6,8 +6,8 @@ import mk.trkalo.dnp.dnpshop.model.ProductVariant;
 import mk.trkalo.dnp.dnpshop.model.Size;
 import mk.trkalo.dnp.dnpshop.model.Type;
 import mk.trkalo.dnp.dnpshop.repository.ProductRepository;
+import mk.trkalo.dnp.dnpshop.repository.ProductVariantRepository;
 import mk.trkalo.dnp.dnpshop.service.ProductService;
-import mk.trkalo.dnp.dnpshop.service.ProductionService;
 import mk.trkalo.dnp.dnpshop.service.SizeService;
 import mk.trkalo.dnp.dnpshop.service.TypeService;
 import org.springframework.stereotype.Service;
@@ -21,11 +21,14 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final SizeService sizeService;
     private final TypeService typeService;
+    private final ProductVariantRepository productVariantRepository;
 
-    public ProductServiceImpl(ProductRepository productRepository, SizeService sizeService, TypeService typeService) {
+    public ProductServiceImpl(ProductRepository productRepository, SizeService sizeService, TypeService typeService, ProductVariantRepository productVariantRepository) {
         this.productRepository = productRepository;
         this.sizeService = sizeService;
         this.typeService = typeService;
+
+        this.productVariantRepository = productVariantRepository;
     }
 
     @Override
@@ -66,6 +69,11 @@ public class ProductServiceImpl implements ProductService {
         existing.setDescription(product.getDescription());
         existing.setName(product.getName());
         return productRepository.save(existing);
+    }
+
+    @Override
+    public ProductVariant findProductVariantById(Long id) {
+        return productVariantRepository.findById(id).orElseThrow(()-> new RuntimeException("Варијантата на продуктот не постои."));
     }
 
     @Override

@@ -24,7 +24,7 @@ public class User  {
     @Convert(converter = PhoneNumbersConverter.class)
     public Set<String> phoneNumbers = new TreeSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     public List<Address> addresses = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class User  {
     public static boolean validatePhoneNumber(String phoneNumber){
         return phoneNumber.matches("[+]?[0123456789]{6,12}");
     }
-    private User(){}
+    protected User(){}
     public User(String name){
         this.name=name;
     }
