@@ -1,4 +1,4 @@
-package mk.trkalo.dnp.dnpshop.web.rest;
+package mk.trkalo.dnp.dnpshop.ports.rest;
 
 import mk.trkalo.dnp.dnpshop.model.payloads.request.LoginRequest;
 import mk.trkalo.dnp.dnpshop.exception.Error;
