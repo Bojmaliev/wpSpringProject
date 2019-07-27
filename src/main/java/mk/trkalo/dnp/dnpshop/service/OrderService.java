@@ -1,10 +1,9 @@
 package mk.trkalo.dnp.dnpshop.service;
 
 import mk.trkalo.dnp.dnpshop.model.Order;
-import mk.trkalo.dnp.dnpshop.model.User;
 import mk.trkalo.dnp.dnpshop.model.payloads.request.ProductVariantRequest;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface OrderService {
@@ -20,4 +19,10 @@ public interface OrderService {
     Order updateItemList(Long orderId, List<ProductVariantRequest> itemList);
 
     Order updateShippingMethod(Long orderId, Long shippingId);
+
+    Order updateDescription(Long orderId, String desc);
+
+    Order updateShippingDate(Long orderId, Timestamp parse);
+
+    Order updateAddress(Long orderId, Long addressId);
 }

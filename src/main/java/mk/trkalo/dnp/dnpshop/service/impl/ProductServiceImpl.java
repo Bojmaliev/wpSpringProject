@@ -1,10 +1,7 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
 import mk.trkalo.dnp.dnpshop.dto.ProductVariantDto;
-import mk.trkalo.dnp.dnpshop.model.Product;
-import mk.trkalo.dnp.dnpshop.model.ProductVariant;
-import mk.trkalo.dnp.dnpshop.model.Size;
-import mk.trkalo.dnp.dnpshop.model.Type;
+import mk.trkalo.dnp.dnpshop.model.*;
 import mk.trkalo.dnp.dnpshop.repository.ProductRepository;
 import mk.trkalo.dnp.dnpshop.repository.ProductVariantRepository;
 import mk.trkalo.dnp.dnpshop.service.ProductService;
@@ -14,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -104,5 +103,28 @@ public class ProductServiceImpl implements ProductService {
 
         p.removeProductVariant(variantId);
         productRepository.flush();
+    }
+
+    @Override
+    public void updateStock(Set<OrderItem> currList, Set<OrderItem> newList) {
+        //delete new that doesnt exists
+        currList.forEach(a->{
+            if(!newList.contains(a)){
+                addNumberSoldToProductVariant(a.productVariant.id,-a.quantity);
+            }
+        });
+
+        newList.forEach(a->{
+            int newSold=0;
+            if(currList.contains(a))newSold-=currList.stream().filter(b->b.equals(a)).findFirst().get().quantity;
+            newSold+= a.quantity;
+           addNumberSoldToProductVariant(a.productVariant.id, newSold);
+        });
+    }
+
+    @Override
+    public void addNumberSoldToProductVariant(Long productVariantId, Integer quantity) {
+        Optional<ProductVariant> pv = productVariantRepository.findById(productVariantId);
+        pv.ifPresent(productVariant -> productVariant.addNumberSold(quantity));
     }
 }

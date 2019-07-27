@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 public class ShippingMethod {
@@ -16,12 +16,17 @@ public class ShippingMethod {
 
     public Integer minOrderPrice=0;
 
+    public Timestamp nextShippment = new Timestamp(System.currentTimeMillis());
+
+    public Boolean requiresAddress=true;
+
 
     public boolean active=true;
 
     private ShippingMethod(){
     }
-    public ShippingMethod(String name){
+    public ShippingMethod(String name, Boolean requiresAddress){
+        this.requiresAddress=requiresAddress;
         this.name = name;
     }
 }

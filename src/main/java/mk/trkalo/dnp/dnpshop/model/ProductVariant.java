@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class ProductVariant {
     @NotNull
     public Integer price;
 
-    private int numberProduced =0;
-    private int numberSold = 0;
+    private Integer numberProduced =0;
+    private Integer numberSold = 0;
     private Boolean canOrder = true;
 
     public ProductVariant(){}
@@ -37,7 +38,7 @@ public class ProductVariant {
 
     }
 
-    public void setPrice(int price){
+    public void setPrice(Integer price){
         if(price < 0) throw new RuntimeException("Цената неможе да биде негативен број");
         this.price = price;
     }
@@ -49,10 +50,12 @@ public class ProductVariant {
         return this.numberProduced;
     }
 
-    public void addProduction(int quantity){
+    @Transactional
+    public void addProduction(Integer quantity){
         this.numberProduced+=quantity;
     }
-    public void addNumberSold(int quantity){this.numberSold +=quantity;}
+    @Transactional
+    public void addNumberSold(Integer quantity){this.numberSold +=quantity;}
 
 
     @Transient

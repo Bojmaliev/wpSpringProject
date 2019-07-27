@@ -14,4 +14,6 @@ public interface AddressService {
     void deleteAll();
 
     List<Address> saveAddresses(AddressDto address, StreetDto street, String object);
+
+    Address findById(Long addressId);
 }

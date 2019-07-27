@@ -7,7 +7,9 @@ import mk.trkalo.dnp.dnpshop.repository.OrderRepository;
 import mk.trkalo.dnp.dnpshop.service.*;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,20 +20,21 @@ public class OrderServiceImpl implements OrderService {
     private final ProductService productService;
     private final UserService userService;
     private final LoggedUserService loggedUserService;
+    private final AddressService addressService;
 
-    public OrderServiceImpl(OrderRepository orderRepository, ShippingService shippingService, ProductService productService, UserService userService, LoggedUserService loggedUserService) {
+    public OrderServiceImpl(OrderRepository orderRepository, ShippingService shippingService, ProductService productService, UserService userService, LoggedUserService loggedUserService, AddressService addressService) {
         this.orderRepository = orderRepository;
         this.shippingService = shippingService;
         this.productService = productService;
         this.userService = userService;
         this.loggedUserService = loggedUserService;
+        this.addressService = addressService;
     }
 
     @Override
     public Order createEmptyOrder() {
-        Order o = Order.createEmptyOrder(loggedUserService.get());
+        Order o = Order.createEmptyOrder(loggedUserService.get(), shippingService.getDefaultShippingMethod());
 
-        o.shippingMethod = shippingService.getDefaultShippingMethod();
         return orderRepository.save(o);
     }
 
@@ -51,9 +54,7 @@ public class OrderServiceImpl implements OrderService {
         User user=null;
         if(userId!=0)user = userService.findById(userId);
 
-        order.connectWithUser(user);
-        order.checkOrder(loggedUserService.get());
-
+        order.connectWithUser(user, loggedUserService.get());
         return orderRepository.saveAndFlush(order);
     }
 
@@ -66,15 +67,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order updateItemList(Long orderId, List<ProductVariantRequest> itemList) {
         Order order = findById(orderId);
-        List<OrderItem> orderItemsReq = itemList.stream().map(a-> {
+
+        Set<OrderItem> orderItemsReq = itemList.stream().map(a-> {
             ProductVariant pv = productService.findProductVariantById(a.productVariant);
             return new OrderItem(pv, a.quantity, a.price);
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toSet());
 
+        productService.updateStock(order.orderItemList, orderItemsReq);
 
-        order.retainAllOrderItems(orderItemsReq);
-        order.addAllOrderItems(orderItemsReq);
-        order.checkOrder(loggedUserService.get());
+        order.retainAllOrderItems(orderItemsReq, loggedUserService.get());
+        order.addAllOrderItems(orderItemsReq, loggedUserService.get());
         return orderRepository.saveAndFlush(order);
 
     }
@@ -83,7 +85,28 @@ public class OrderServiceImpl implements OrderService {
     public Order updateShippingMethod(Long orderId, Long shippingId) {
         Order order = findById(orderId);
         ShippingMethod sm = shippingService.findById(shippingId);
-        order.updateShippingMethod(sm);
+        order.updateShippingMethod(sm, loggedUserService.get());
+        return orderRepository.saveAndFlush(order);
+    }
+
+    @Override
+    public Order updateDescription(Long orderId, String desc) {
+        Order order = findById(orderId);
+        order.description = desc;
+        return orderRepository.saveAndFlush(order);
+    }
+
+    @Override
+    public Order updateShippingDate(Long orderId, Timestamp parse) {
+        Order order = findById(orderId);
+        order.shouldBeShipped = parse;
+        return orderRepository.saveAndFlush(order);
+    }
+
+    @Override
+    public Order updateAddress(Long orderId, Long addressId) {
+        Order order = findById(orderId);
+        order.setAddress(addressService.findById(addressId), loggedUserService.get());
         return orderRepository.saveAndFlush(order);
     }
 }

@@ -1,7 +1,7 @@
 package mk.trkalo.dnp.dnpshop.ports.rest;
 
+import com.fasterxml.jackson.databind.node.TextNode;
 import mk.trkalo.dnp.dnpshop.model.Order;
-import mk.trkalo.dnp.dnpshop.model.User;
 import mk.trkalo.dnp.dnpshop.model.payloads.request.ProductVariantRequest;
 import mk.trkalo.dnp.dnpshop.service.LoggedUserService;
 import mk.trkalo.dnp.dnpshop.service.OrderService;
@@ -11,7 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -63,5 +63,19 @@ public class OrderResource {
         return ResponseEntity.ok(orderService.updateItemList(orderId, itemList));
     }
 
+    @PatchMapping("{orderId}/description")
+    public ResponseEntity<?> updateDescription(@PathVariable Long orderId, @RequestBody TextNode desc){
+        return ResponseEntity.ok(orderService.updateDescription(orderId, desc.asText()));
+    }
 
+
+    @PatchMapping("{orderId}/shouldBeShipped")
+    public ResponseEntity<?> shouldBeShipped(@PathVariable Long orderId, @RequestBody TextNode desc){
+        return ResponseEntity.ok(orderService.updateShippingDate(orderId, Timestamp.valueOf(desc.asText())));
+    }
+
+    @GetMapping("/{orderId}/setAddress/{addressId}")
+    public ResponseEntity<?> setAddressToOrder(@PathVariable Long orderId, @PathVariable Long addressId){
+        return ResponseEntity.ok(orderService.updateAddress(orderId, addressId));
+    }
 }

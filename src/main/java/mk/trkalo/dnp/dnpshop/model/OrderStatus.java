@@ -1,9 +1,12 @@
 package mk.trkalo.dnp.dnpshop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.util.Objects;
 
 
 @Entity
@@ -15,9 +18,10 @@ public class OrderStatus implements Comparable<OrderStatus> {
     @Enumerated(EnumType.STRING)
     public Status status;
 
-    public LocalDateTime dateTime;
+    public Timestamp dateTime;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JsonIgnoreProperties({"phoneNumbers", "addresses", "email"})
     public User userMadeChange;
 
@@ -27,7 +31,7 @@ public class OrderStatus implements Comparable<OrderStatus> {
     public static OrderStatus create(Status status, User userMadeChange) {
         OrderStatus os = new OrderStatus();
         os.status = status;
-        os.dateTime = LocalDateTime.now();
+        os.dateTime = new Timestamp(System.currentTimeMillis());
         os.userMadeChange = userMadeChange;
         return os;
     }
@@ -38,5 +42,18 @@ public class OrderStatus implements Comparable<OrderStatus> {
         int s = status.compareTo(o.status);
         if(s == 0) return dateTime.compareTo(o.dateTime);
         return s;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderStatus that = (OrderStatus) o;
+        return status == that.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(status);
     }
 }

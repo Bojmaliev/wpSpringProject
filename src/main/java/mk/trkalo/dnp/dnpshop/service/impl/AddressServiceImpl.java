@@ -71,4 +71,9 @@ public class AddressServiceImpl implements AddressService {
 
     }
 
+    @Override
+    public Address findById(Long addressId) {
+        return addressRepository.findById(addressId).orElseThrow(()-> new Error("Адресата не постои."));
+    }
+
 }

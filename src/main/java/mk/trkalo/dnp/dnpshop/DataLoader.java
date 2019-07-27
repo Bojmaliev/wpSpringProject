@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -48,9 +48,9 @@ public class DataLoader {
 
 
 
-        shippingService.save(new ShippingMethod("Карго"));
-        shippingService.save(new ShippingMethod("Подигнување"));
-        shippingService.save(new ShippingMethod("Достава Скопје 21.02"));
+        shippingService.save(new ShippingMethod("Карго", true));
+        shippingService.save(new ShippingMethod("Подигнување", false));
+        shippingService.save(new ShippingMethod("Достава Скопје 21.02", true));
         //add new
         Size s = sizeService.save(new Size("Големо", "0.720ml"));
         Size s1 = sizeService.save(new Size("Мало", "0.370ml"));
@@ -92,15 +92,16 @@ public class DataLoader {
             u1.addPhoneNumber(getRandom(phoneNumbers));
             u1 = userService.save(u1);
 
-            if (LocalDateTime.now().getNano() % 2 == 0) userService.addPhoneNumber(u1.id, getRandom(phoneNumbers1));
+            if (System.currentTimeMillis() % 2 == 0) userService.addPhoneNumber(u1.id, getRandom(phoneNumbers1));
         }
 
         City city = cityService.save(new City("Гевгелија"));
         City city1 = cityService.save(new City("Скопје"));
         City city2 = cityService.save(new City("Струмица"));
         City city3 = cityService.save(new City("Неготино"));
-        Address a1 = new Address(u1, city, 23.5555,44.4444 );
+        Address a1 = new Address(city, 23.5555,44.4444 );
         u1.addAddress(a1);
+        u1.addAddress(new ObjectAddress(city1, "Aerodrom", "", "Majka tereza"));
         userService.save(u1);
 
     }

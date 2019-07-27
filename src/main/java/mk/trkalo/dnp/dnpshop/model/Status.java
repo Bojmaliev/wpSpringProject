@@ -1,7 +1,7 @@
 package mk.trkalo.dnp.dnpshop.model;
 
 public enum Status {
-    CREATED, //when user created the order
+    CREATED , //when user created the order
     SUBMITTED, // when user submit the order
 
     PACKED, // when is packed

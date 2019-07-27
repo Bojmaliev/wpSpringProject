@@ -26,7 +26,7 @@ public class Address {
         this.description= description;
     }
 
-    public Address(User user, City city, Double latitude, Double longitude){
+    public Address(City city, Double latitude, Double longitude){
         this.city = city;
         this.latitude = latitude;
         this.longitude = longitude;

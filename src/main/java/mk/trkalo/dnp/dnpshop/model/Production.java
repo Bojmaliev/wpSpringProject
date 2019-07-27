@@ -1,13 +1,12 @@
 package mk.trkalo.dnp.dnpshop.model;
 
 
-
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 public class Production {
@@ -19,18 +18,18 @@ public class Production {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ProductVariant productVariant;
     private int quantity;
-    private LocalDateTime dateTime;
+    private Timestamp dateTime;
 
     public Production(){}
     public Production(ProductVariant pv, int quantity){
         this.productVariant = pv;
         this.quantity = quantity;
-        dateTime = LocalDateTime.now();
+        dateTime = new Timestamp(System.currentTimeMillis());
     }
     public int getQuantity(){
         return quantity;
     }
-    private LocalDateTime getDateTime(){
+    private Timestamp getDateTime(){
         return dateTime;
     }
 
