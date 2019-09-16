@@ -21,6 +21,7 @@ public interface ProductService {
     Product updateProductVariant(Long productId, Long variantId, ProductVariantDto productVariantDto);
     void deleteProductVariant(Long productId, Long variantId);
 
-    void updateStock(Set<OrderItem> orderItemList, Set<OrderItem> orderItemsReq);
+    void updateStock(Set<OrderItem> currList, Set<OrderItem> newList);
+
     void addNumberSoldToProductVariant(Long productVariantId, Integer quantity);
 }

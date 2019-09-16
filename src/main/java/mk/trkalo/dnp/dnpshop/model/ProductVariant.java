@@ -22,6 +22,9 @@ public class ProductVariant {
     @NotNull
     public Type type;
 
+    @ManyToOne
+    private Product product;
+
     @NotNull
     public Integer price;
 
@@ -42,6 +45,15 @@ public class ProductVariant {
         if(price < 0) throw new RuntimeException("Цената неможе да биде негативен број");
         this.price = price;
     }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public String getProduct() {
+        return product.getName();
+    }
+
     public Integer getNumberSold(){
         return this.numberSold;
     }

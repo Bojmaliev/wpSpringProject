@@ -1,8 +1,10 @@
 package mk.trkalo.dnp.dnpshop.service;
 
 import mk.trkalo.dnp.dnpshop.dto.NewOrderClientDto;
+import mk.trkalo.dnp.dnpshop.dto.address.AddressesDto;
 import mk.trkalo.dnp.dnpshop.model.LoggedUser;
 import mk.trkalo.dnp.dnpshop.model.User;
+import mk.trkalo.dnp.dnpshop.model.payloads.request.UpdateClient;
 
 import java.util.List;
 
@@ -20,4 +22,8 @@ public interface UserService {
     List<User> findFirst8();
 
     User save(NewOrderClientDto newOrderClientDto);
+
+    User updateClient(Long clientId, UpdateClient updateClient);
+
+    User addClientAddress(Long userId, AddressesDto addressesDto);
 }

@@ -1,6 +1,9 @@
 package mk.trkalo.dnp.dnpshop.ports.rest;
 import mk.trkalo.dnp.dnpshop.dto.NewOrderClientDto;
+import mk.trkalo.dnp.dnpshop.dto.address.AddressDto;
+import mk.trkalo.dnp.dnpshop.dto.address.AddressesDto;
 import mk.trkalo.dnp.dnpshop.model.User;
+import mk.trkalo.dnp.dnpshop.model.payloads.request.UpdateClient;
 import mk.trkalo.dnp.dnpshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -41,7 +44,15 @@ public class ClientResource {
     @PostMapping
     public User newOrderClient(@RequestBody NewOrderClientDto newOrderClientDto ){
         return userService.save(newOrderClientDto);
+    }
 
+    @PostMapping("/{userId}/new_address")
+    public User clientAddAddress(@PathVariable Long userId, @RequestBody AddressesDto addressesDto){
+        return userService.addClientAddress(userId, addressesDto);
+    }
 
+    @PatchMapping("/{clientId}")
+    public User updateClient(@PathVariable Long clientId, @RequestBody UpdateClient updateClient){
+        return userService.updateClient(clientId, updateClient);
     }
 }

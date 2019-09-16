@@ -26,6 +26,8 @@ public class Order {
     @ManyToOne
     public Address address;
 
+    public Long paid=0L;
+
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "order_id")
@@ -47,7 +49,6 @@ public class Order {
         if (oi.isPresent()) {
             oi.get().update(item);
         } else orderItemList.add(item);
-        checkOrder(user);
     }
 
     public void addOrderStatus(OrderStatus orderStatus) {
@@ -56,11 +57,11 @@ public class Order {
     }
 
     private void checkOrder(LoggedUser loggedUser) {
-        if (currentStatus.status != Status.SUBMITTED) {
+        if (currentStatus.status == Status.CREATED) {
             if (orderItemList.size() > 0 && user != null && (address != null || !shippingMethod.requiresAddress)) {
                 addOrderStatus(OrderStatus.create(Status.SUBMITTED, loggedUser));
             }
-        } else if (currentStatus.status != Status.CREATED) {
+        } else {
             if (orderItemList.size() == 0 || user == null || (address == null && shippingMethod.requiresAddress)) {
                 OrderStatus old = orderStatuses.stream().filter(a -> a.equals(OrderStatus.create(Status.CREATED, loggedUser))).findFirst().get();
                 currentStatus = old;
@@ -75,15 +76,17 @@ public class Order {
 
     @Transient
     public int getPrice() {
-        int sum = 0;
-        for (OrderItem o : orderItemList) {
-            sum += o.getTotalPrice();
-        }
-        return sum;
+        return orderItemList.stream().mapToInt(OrderItem::getTotalPrice).sum();
+    }
+
+    @Transient
+    public int getQuantity(){
+        return orderItemList.stream().mapToInt(a->a.quantity).sum();
     }
 
     private Order() {
     }
+    public static Order createOrderExample(){return new Order();}
 
     public void connectWithUser(User user, LoggedUser userMadeChange) {
         this.user = user;
@@ -112,10 +115,14 @@ public class Order {
 
     public void retainAllOrderItems(Set<OrderItem> orderItemsReq, LoggedUser userMadeChange) {
         orderItemList.retainAll(orderItemsReq);
+        checkOrder(userMadeChange);
+
     }
 
     public void addAllOrderItems(Set<OrderItem> orderItemsReq, LoggedUser userMadeChange) {
         orderItemsReq.forEach(a -> addOrUpdateItemToOrder(a, userMadeChange));
+        checkOrder(userMadeChange);
+
     }
 
     public void setAddress(Address address, LoggedUser loggedUser) {

@@ -2,6 +2,8 @@ package mk.trkalo.dnp.dnpshop.service;
 
 import mk.trkalo.dnp.dnpshop.model.Order;
 import mk.trkalo.dnp.dnpshop.model.payloads.request.ProductVariantRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -25,4 +27,6 @@ public interface OrderService {
     Order updateShippingDate(Long orderId, Timestamp parse);
 
     Order updateAddress(Long orderId, Long addressId);
+
+    Page<Order> search(String search, Pageable pageable);
 }

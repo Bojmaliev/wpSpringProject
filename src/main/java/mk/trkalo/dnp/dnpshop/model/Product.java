@@ -53,7 +53,9 @@ public class Product {
         return productVariants;
     }
 
-    public void addProductVariant(ProductVariant pv) {
+    public void addProductVariant(Size s, Type t, int price, Boolean canOrder) {
+        ProductVariant pv = new ProductVariant(s,t,price,canOrder);
+        pv.setProduct(this);
         productVariants.add(pv);
     }
 
@@ -62,5 +64,9 @@ public class Product {
     }
     public void removeProductVariant(Long productVariantId){
         productVariants.remove(getProductVariantById(productVariantId));
+    }
+
+    public void addProductVariant(ProductVariant productVariant) {
+        productVariants.add(productVariant);
     }
 }

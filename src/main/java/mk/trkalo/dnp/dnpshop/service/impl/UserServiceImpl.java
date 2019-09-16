@@ -1,9 +1,11 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
 import mk.trkalo.dnp.dnpshop.dto.NewOrderClientDto;
+import mk.trkalo.dnp.dnpshop.dto.address.AddressesDto;
 import mk.trkalo.dnp.dnpshop.model.LoggedUser;
 import mk.trkalo.dnp.dnpshop.model.Role;
 import mk.trkalo.dnp.dnpshop.model.User;
+import mk.trkalo.dnp.dnpshop.model.payloads.request.UpdateClient;
 import mk.trkalo.dnp.dnpshop.repository.UserRepository;
 import mk.trkalo.dnp.dnpshop.service.AddressService;
 import mk.trkalo.dnp.dnpshop.service.UserService;
@@ -87,6 +89,23 @@ public class UserServiceImpl implements UserService {
     public User save(NewOrderClientDto client) {
 
         User user = new User(client.name, client.phoneNumbers, addressService.saveAddresses(client.address, client.street, client.object));
+        return userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public User updateClient(Long clientId, UpdateClient updateClient) {
+        User user = findById(clientId);
+        user.name = updateClient.name;
+        user.phoneNumbers.clear();
+        user.phoneNumbers.addAll(updateClient.phoneNumbers);
+        return userRepository.saveAndFlush(user);
+
+    }
+
+    @Override
+    public User addClientAddress(Long userId, AddressesDto dto) {
+        User user = findById(userId);
+        addressService.saveAddresses(dto.address, dto.street, dto.object).forEach(user::addAddress);
         return userRepository.saveAndFlush(user);
     }
 }

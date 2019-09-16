@@ -5,6 +5,10 @@ import mk.trkalo.dnp.dnpshop.model.*;
 import mk.trkalo.dnp.dnpshop.model.payloads.request.ProductVariantRequest;
 import mk.trkalo.dnp.dnpshop.repository.OrderRepository;
 import mk.trkalo.dnp.dnpshop.service.*;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -109,4 +113,14 @@ public class OrderServiceImpl implements OrderService {
         order.setAddress(addressService.findById(addressId), loggedUserService.get());
         return orderRepository.saveAndFlush(order);
     }
+
+        @Override
+    public Page<Order> search(String search, Pageable pageable) {
+        Order o = Order.createOrderExample();
+        ExampleMatcher ex = ExampleMatcher.matching().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);//.withIgnorePaths();
+        Example<Order> example = Example.of(o, ex);
+        return orderRepository.findAll(example, pageable);
+    }
+
+
 }

@@ -7,10 +7,13 @@ import mk.trkalo.dnp.dnpshop.service.LoggedUserService;
 import mk.trkalo.dnp.dnpshop.service.OrderService;
 import mk.trkalo.dnp.dnpshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -77,5 +80,13 @@ public class OrderResource {
     @GetMapping("/{orderId}/setAddress/{addressId}")
     public ResponseEntity<?> setAddressToOrder(@PathVariable Long orderId, @PathVariable Long addressId){
         return ResponseEntity.ok(orderService.updateAddress(orderId, addressId));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchOrders(@RequestParam(required = false) String search,
+                                          @RequestParam Integer page,
+                                          @RequestParam Integer size ){
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(orderService.search(search, pageable));
     }
 }
