@@ -45,40 +45,40 @@ public class DataLoader {
         userService.deleteAll();
         cityService.deleteAll();
         shippingService.deleteAll();
-/*
 
 
-        shippingService.save(new ShippingMethod("Карго", true));
-        shippingService.save(new ShippingMethod("Подигнување", false));
-        shippingService.save(new ShippingMethod("Достава Скопје 21.02", true));
+
+        shippingService.save(new ShippingMethod("Kargo", true));
+        shippingService.save(new ShippingMethod("Podignuvanje", false));
+        shippingService.save(new ShippingMethod("Dostava Skopje 21.02", true));
         //add new
-        Size s = sizeService.save(new Size("Големо", "0.720ml"));
-        Size s1 = sizeService.save(new Size("Мало", "0.370ml"));
-        sizeService.save(new Size("Шише1", "1L"));
+        Size s = sizeService.save(new Size("Golemo", "0.720ml"));
+        Size s1 = sizeService.save(new Size("Malo", "0.370ml"));
+        sizeService.save(new Size("Sishe", "1L"));
 
-        typeService.save(new Type("Благ"));
-        Type t = typeService.save(new Type("Лут"));
-        Type t1 = typeService.save(new Type("Малку лут"));
-        Type dzem = typeService.save(new Type("Џемdd"));
-        typeService.save(new Type("Слатко"));
+        typeService.save(new Type("Blag"));
+        Type t = typeService.save(new Type("Lut"));
+        Type t1 = typeService.save(new Type("Malku lut"));
+        Type dzem = typeService.save(new Type("Dzem"));
+        typeService.save(new Type("Slatko"));
 
 
-        Product p = new Product("Ајвар", "многу вкусен");
+        Product p = new Product("Ajvar", "многу вкусен");
         p.addProductVariant(new ProductVariant(s,t, 200, true));
         p.addProductVariant(new ProductVariant(s1,t, 100, true));
         p.addProductVariant(new ProductVariant(s1,t1, 100,true));
         p = productService.saveProduct(p);
 
 
-        Product p1 = new Product("Лутеница", "многу вкусна исто така");
+        Product p1 = new Product("Lutenica", "многу вкусна исто така");
         p1.addProductVariant(new ProductVariant(s1,t1, 70, true));
         p1 = productService.saveProduct(p1);
 
-        Product p2 = new Product("Малиџано", "многу вкусна исто така");
+        Product p2 = new Product("Malidzano", "многу вкусна исто така");
         p2.addProductVariant(new ProductVariant(s1,t1, 80, true));
         p2 = productService.saveProduct(p2);
 
-        Product p3 = new Product("Диви смокви", "многу вкусна исто така");
+        Product p3 = new Product("Divi smokvi", "многу вкусна исто така");
         p3.addProductVariant(new ProductVariant(s1,dzem, 100, true));
         p3 = productService.saveProduct(p3);
 
@@ -95,14 +95,14 @@ public class DataLoader {
             if (System.currentTimeMillis() % 2 == 0) userService.addPhoneNumber(u1.id, getRandom(phoneNumbers1));
         }
 
-        City city = cityService.save(new City("Гевгелија"));
-        City city1 = cityService.save(new City("Скопје"));
-        City city2 = cityService.save(new City("Струмица"));
-        City city3 = cityService.save(new City("Неготино"));
+        City city = cityService.save(new City("Gevgelija"));
+        City city1 = cityService.save(new City("Skopje"));
+        City city2 = cityService.save(new City("Strumica"));
+        City city3 = cityService.save(new City("Negotino"));
         Address a1 = new Address(city, 23.5555,44.4444 );
         u1.addAddress(a1);
         u1.addAddress(new ObjectAddress(city1, "Aerodrom", "", "Majka tereza"));
-        userService.save(u1);*/
+        userService.save(u1);
 
     }
     public static String getRandom(String[] array) {
