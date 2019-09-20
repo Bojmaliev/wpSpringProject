@@ -45,7 +45,7 @@ public class DataLoader {
         userService.deleteAll();
         cityService.deleteAll();
         shippingService.deleteAll();
-
+/*
 
 
         shippingService.save(new ShippingMethod("Карго", true));
@@ -102,7 +102,7 @@ public class DataLoader {
         Address a1 = new Address(city, 23.5555,44.4444 );
         u1.addAddress(a1);
         u1.addAddress(new ObjectAddress(city1, "Aerodrom", "", "Majka tereza"));
-        userService.save(u1);
+        userService.save(u1);*/
 
     }
     public static String getRandom(String[] array) {
