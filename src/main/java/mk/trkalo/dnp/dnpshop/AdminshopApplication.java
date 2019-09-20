@@ -20,8 +20,11 @@ public class AdminshopApplication {
 				"mbojmaliev@gmail.com",
 				"maneken45874587"
 		);
+		LoggedUser riki = LoggedUser.createNewAdmin("Riste Stojanov", "riste.stojanov@finki.ukim.mk", "ristes123");
+
 		return args -> {
 			service.save(user);
+			service.save(riki);
 		};
 	}
 	public static void main(String[] args) {
