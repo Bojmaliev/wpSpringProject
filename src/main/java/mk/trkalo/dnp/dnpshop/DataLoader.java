@@ -54,12 +54,12 @@ public class DataLoader {
         //add new
         Size s = sizeService.save(new Size("Големо", "0.720ml"));
         Size s1 = sizeService.save(new Size("Мало", "0.370ml"));
-        sizeService.save(new Size("Шише", "1L"));
+        sizeService.save(new Size("Шише1", "1L"));
 
         typeService.save(new Type("Благ"));
         Type t = typeService.save(new Type("Лут"));
         Type t1 = typeService.save(new Type("Малку лут"));
-        Type dzem = typeService.save(new Type("Џем"));
+        Type dzem = typeService.save(new Type("Џемdd"));
         typeService.save(new Type("Слатко"));
 
 
