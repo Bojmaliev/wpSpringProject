@@ -1,4 +1,4 @@
-package mk.trkalo.dnp.dnpshop.model;
+package mk.trkalo.dnp.dnpshop.model.user;
 
 public enum Role {
     ROLE_CLIENT,

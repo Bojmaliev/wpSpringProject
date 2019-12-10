@@ -1,6 +1,6 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
-import mk.trkalo.dnp.dnpshop.model.City;
+import mk.trkalo.dnp.dnpshop.model.address.City;
 import mk.trkalo.dnp.dnpshop.repository.CityRepository;
 import mk.trkalo.dnp.dnpshop.service.CityService;
 import org.springframework.stereotype.Service;

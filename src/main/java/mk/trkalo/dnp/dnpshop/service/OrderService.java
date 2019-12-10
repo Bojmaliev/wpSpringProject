@@ -1,6 +1,6 @@
 package mk.trkalo.dnp.dnpshop.service;
 
-import mk.trkalo.dnp.dnpshop.model.Order;
+import mk.trkalo.dnp.dnpshop.model.order.Order;
 import mk.trkalo.dnp.dnpshop.model.payloads.request.ProductVariantRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

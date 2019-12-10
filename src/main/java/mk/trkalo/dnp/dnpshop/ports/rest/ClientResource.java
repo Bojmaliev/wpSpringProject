@@ -1,8 +1,7 @@
 package mk.trkalo.dnp.dnpshop.ports.rest;
 import mk.trkalo.dnp.dnpshop.dto.NewOrderClientDto;
-import mk.trkalo.dnp.dnpshop.dto.address.AddressDto;
 import mk.trkalo.dnp.dnpshop.dto.address.AddressesDto;
-import mk.trkalo.dnp.dnpshop.model.User;
+import mk.trkalo.dnp.dnpshop.model.user.User;
 import mk.trkalo.dnp.dnpshop.model.payloads.request.UpdateClient;
 import mk.trkalo.dnp.dnpshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin

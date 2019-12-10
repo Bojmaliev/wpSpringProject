@@ -3,7 +3,7 @@ package mk.trkalo.dnp.dnpshop.service;
 
 import mk.trkalo.dnp.dnpshop.dto.address.AddressDto;
 import mk.trkalo.dnp.dnpshop.dto.address.StreetDto;
-import mk.trkalo.dnp.dnpshop.model.Address;
+import mk.trkalo.dnp.dnpshop.model.address.Address;
 
 import java.util.List;
 

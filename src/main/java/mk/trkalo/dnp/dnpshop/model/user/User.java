@@ -1,6 +1,7 @@
-package mk.trkalo.dnp.dnpshop.model;
+package mk.trkalo.dnp.dnpshop.model.user;
 
 
+import mk.trkalo.dnp.dnpshop.model.address.Address;
 import mk.trkalo.dnp.dnpshop.repository.converters.PhoneNumbersConverter;
 
 import javax.persistence.*;

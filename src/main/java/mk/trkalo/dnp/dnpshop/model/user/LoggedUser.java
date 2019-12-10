@@ -1,4 +1,4 @@
-package mk.trkalo.dnp.dnpshop.model;
+package mk.trkalo.dnp.dnpshop.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

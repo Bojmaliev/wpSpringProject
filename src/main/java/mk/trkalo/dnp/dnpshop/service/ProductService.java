@@ -1,9 +1,9 @@
 package mk.trkalo.dnp.dnpshop.service;
 
 import mk.trkalo.dnp.dnpshop.dto.ProductVariantDto;
-import mk.trkalo.dnp.dnpshop.model.OrderItem;
-import mk.trkalo.dnp.dnpshop.model.Product;
-import mk.trkalo.dnp.dnpshop.model.ProductVariant;
+import mk.trkalo.dnp.dnpshop.model.order.OrderItem;
+import mk.trkalo.dnp.dnpshop.model.product.Product;
+import mk.trkalo.dnp.dnpshop.model.product.ProductVariant;
 
 import java.util.List;
 import java.util.Set;

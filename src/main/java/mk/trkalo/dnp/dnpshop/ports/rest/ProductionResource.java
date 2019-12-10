@@ -1,6 +1,6 @@
 package mk.trkalo.dnp.dnpshop.ports.rest;
 import mk.trkalo.dnp.dnpshop.dto.ProductionDto;
-import mk.trkalo.dnp.dnpshop.model.Production;
+import mk.trkalo.dnp.dnpshop.model.product.Production;
 import mk.trkalo.dnp.dnpshop.service.ProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

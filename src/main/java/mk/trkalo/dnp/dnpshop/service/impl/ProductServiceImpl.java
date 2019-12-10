@@ -1,7 +1,11 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
 import mk.trkalo.dnp.dnpshop.dto.ProductVariantDto;
-import mk.trkalo.dnp.dnpshop.model.*;
+import mk.trkalo.dnp.dnpshop.model.order.OrderItem;
+import mk.trkalo.dnp.dnpshop.model.product.Product;
+import mk.trkalo.dnp.dnpshop.model.product.ProductVariant;
+import mk.trkalo.dnp.dnpshop.model.product.Size;
+import mk.trkalo.dnp.dnpshop.model.product.Type;
 import mk.trkalo.dnp.dnpshop.repository.ProductRepository;
 import mk.trkalo.dnp.dnpshop.repository.ProductVariantRepository;
 import mk.trkalo.dnp.dnpshop.service.ProductService;

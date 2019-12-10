@@ -1,7 +1,10 @@
-package mk.trkalo.dnp.dnpshop.model;
+package mk.trkalo.dnp.dnpshop.model.order;
 
 
 import mk.trkalo.dnp.dnpshop.exception.Error;
+import mk.trkalo.dnp.dnpshop.model.address.Address;
+import mk.trkalo.dnp.dnpshop.model.user.LoggedUser;
+import mk.trkalo.dnp.dnpshop.model.user.User;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

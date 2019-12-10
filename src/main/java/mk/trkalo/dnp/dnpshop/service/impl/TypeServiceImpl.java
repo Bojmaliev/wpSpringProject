@@ -1,11 +1,10 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
-import mk.trkalo.dnp.dnpshop.model.Type;
+import mk.trkalo.dnp.dnpshop.model.product.Type;
 import mk.trkalo.dnp.dnpshop.repository.TypeRepository;
 import mk.trkalo.dnp.dnpshop.service.TypeService;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @Service

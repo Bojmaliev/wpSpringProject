@@ -1,6 +1,6 @@
 package mk.trkalo.dnp.dnpshop.ports.rest;
 
-import mk.trkalo.dnp.dnpshop.model.Type;
+import mk.trkalo.dnp.dnpshop.model.product.Type;
 import mk.trkalo.dnp.dnpshop.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package mk.trkalo.dnp.dnpshop.model;
+package mk.trkalo.dnp.dnpshop.model.product;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

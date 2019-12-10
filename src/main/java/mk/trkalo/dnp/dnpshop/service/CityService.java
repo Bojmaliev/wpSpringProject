@@ -1,6 +1,6 @@
 package mk.trkalo.dnp.dnpshop.service;
 
-import mk.trkalo.dnp.dnpshop.model.City;
+import mk.trkalo.dnp.dnpshop.model.address.City;
 
 import java.util.List;
 

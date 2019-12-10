@@ -1,8 +1,7 @@
 package mk.trkalo.dnp.dnpshop.ports.rest;
 
 
-import mk.trkalo.dnp.dnpshop.model.ShippingMethod;
-import mk.trkalo.dnp.dnpshop.model.Size;
+import mk.trkalo.dnp.dnpshop.model.order.ShippingMethod;
 import mk.trkalo.dnp.dnpshop.service.ShippingService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -1,13 +1,8 @@
-package mk.trkalo.dnp.dnpshop.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+package mk.trkalo.dnp.dnpshop.model.product;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 public class ProductVariant {

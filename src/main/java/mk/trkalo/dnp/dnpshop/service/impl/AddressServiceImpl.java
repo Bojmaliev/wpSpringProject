@@ -1,10 +1,10 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 import mk.trkalo.dnp.dnpshop.dto.address.AddressDto;
 import mk.trkalo.dnp.dnpshop.dto.address.StreetDto;
-import mk.trkalo.dnp.dnpshop.model.Address;
-import mk.trkalo.dnp.dnpshop.model.City;
-import mk.trkalo.dnp.dnpshop.model.ObjectAddress;
-import mk.trkalo.dnp.dnpshop.model.StreetAddress;
+import mk.trkalo.dnp.dnpshop.model.address.Address;
+import mk.trkalo.dnp.dnpshop.model.address.City;
+import mk.trkalo.dnp.dnpshop.model.address.ObjectAddress;
+import mk.trkalo.dnp.dnpshop.model.address.StreetAddress;
 import mk.trkalo.dnp.dnpshop.repository.AddressRepository;
 import mk.trkalo.dnp.dnpshop.service.AddressService;
 import mk.trkalo.dnp.dnpshop.service.CityService;

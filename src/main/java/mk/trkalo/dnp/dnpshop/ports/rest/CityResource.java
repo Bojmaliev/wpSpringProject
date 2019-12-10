@@ -1,9 +1,7 @@
 package mk.trkalo.dnp.dnpshop.ports.rest;
 
-import mk.trkalo.dnp.dnpshop.model.City;
-import mk.trkalo.dnp.dnpshop.model.User;
+import mk.trkalo.dnp.dnpshop.model.address.City;
 import mk.trkalo.dnp.dnpshop.service.CityService;
-import mk.trkalo.dnp.dnpshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

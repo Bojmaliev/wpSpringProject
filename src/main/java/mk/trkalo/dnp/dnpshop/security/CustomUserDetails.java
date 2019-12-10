@@ -1,8 +1,7 @@
 package mk.trkalo.dnp.dnpshop.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import mk.trkalo.dnp.dnpshop.model.LoggedUser;
-import mk.trkalo.dnp.dnpshop.model.User;
+import mk.trkalo.dnp.dnpshop.model.user.LoggedUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

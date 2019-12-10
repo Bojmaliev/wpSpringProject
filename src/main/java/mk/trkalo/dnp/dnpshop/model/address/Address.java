@@ -1,6 +1,4 @@
-package mk.trkalo.dnp.dnpshop.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package mk.trkalo.dnp.dnpshop.model.address;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

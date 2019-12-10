@@ -1,6 +1,7 @@
-package mk.trkalo.dnp.dnpshop.model;
+package mk.trkalo.dnp.dnpshop.model.order;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import mk.trkalo.dnp.dnpshop.model.user.User;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 

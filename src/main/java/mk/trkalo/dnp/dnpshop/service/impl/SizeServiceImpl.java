@@ -1,6 +1,6 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
-import mk.trkalo.dnp.dnpshop.model.Size;
+import mk.trkalo.dnp.dnpshop.model.product.Size;
 import mk.trkalo.dnp.dnpshop.repository.SizeRepository;
 import mk.trkalo.dnp.dnpshop.service.SizeService;
 import org.springframework.stereotype.Service;

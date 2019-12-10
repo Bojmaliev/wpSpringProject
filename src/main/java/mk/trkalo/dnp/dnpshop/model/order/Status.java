@@ -1,4 +1,4 @@
-package mk.trkalo.dnp.dnpshop.model;
+package mk.trkalo.dnp.dnpshop.model.order;
 
 public enum Status {
     CREATED , //when user created the order

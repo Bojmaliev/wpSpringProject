@@ -1,7 +1,7 @@
 package mk.trkalo.dnp.dnpshop.ports.rest;
 
 import com.fasterxml.jackson.databind.node.TextNode;
-import mk.trkalo.dnp.dnpshop.model.Order;
+import mk.trkalo.dnp.dnpshop.model.order.Order;
 import mk.trkalo.dnp.dnpshop.model.payloads.request.ProductVariantRequest;
 import mk.trkalo.dnp.dnpshop.service.LoggedUserService;
 import mk.trkalo.dnp.dnpshop.service.OrderService;
@@ -13,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.sql.Timestamp;
 import java.util.List;
 

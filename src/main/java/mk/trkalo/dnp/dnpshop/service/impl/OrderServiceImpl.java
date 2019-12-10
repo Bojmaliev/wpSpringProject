@@ -1,8 +1,13 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
 import mk.trkalo.dnp.dnpshop.exception.Error;
-import mk.trkalo.dnp.dnpshop.model.*;
+import mk.trkalo.dnp.dnpshop.model.order.Order;
+import mk.trkalo.dnp.dnpshop.model.order.OrderItem;
+import mk.trkalo.dnp.dnpshop.model.order.ShippingMethod;
+import mk.trkalo.dnp.dnpshop.model.order.Status;
 import mk.trkalo.dnp.dnpshop.model.payloads.request.ProductVariantRequest;
+import mk.trkalo.dnp.dnpshop.model.product.ProductVariant;
+import mk.trkalo.dnp.dnpshop.model.user.User;
 import mk.trkalo.dnp.dnpshop.repository.OrderRepository;
 import mk.trkalo.dnp.dnpshop.service.*;
 import org.springframework.data.domain.Example;

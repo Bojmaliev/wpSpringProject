@@ -1,14 +1,20 @@
 package mk.trkalo.dnp.dnpshop;
 
-import mk.trkalo.dnp.dnpshop.model.*;
+import mk.trkalo.dnp.dnpshop.model.address.Address;
+import mk.trkalo.dnp.dnpshop.model.address.City;
+import mk.trkalo.dnp.dnpshop.model.address.ObjectAddress;
+import mk.trkalo.dnp.dnpshop.model.order.ShippingMethod;
+import mk.trkalo.dnp.dnpshop.model.product.Product;
+import mk.trkalo.dnp.dnpshop.model.product.ProductVariant;
+import mk.trkalo.dnp.dnpshop.model.product.Size;
+import mk.trkalo.dnp.dnpshop.model.product.Type;
+import mk.trkalo.dnp.dnpshop.model.user.User;
 import mk.trkalo.dnp.dnpshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;

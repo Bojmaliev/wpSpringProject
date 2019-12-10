@@ -1,4 +1,4 @@
-package mk.trkalo.dnp.dnpshop.model;
+package mk.trkalo.dnp.dnpshop.model.product;
 
 
 import org.hibernate.annotations.OnDelete;
@@ -20,16 +20,20 @@ public class Production {
     private int quantity;
     private Timestamp dateTime;
 
-    public Production(){}
-    public Production(ProductVariant pv, int quantity){
+    public Production() {
+    }
+
+    public Production(ProductVariant pv, int quantity) {
         this.productVariant = pv;
         this.quantity = quantity;
         dateTime = new Timestamp(System.currentTimeMillis());
     }
-    public int getQuantity(){
+
+    public int getQuantity() {
         return quantity;
     }
-    private Timestamp getDateTime(){
+
+    private Timestamp getDateTime() {
         return dateTime;
     }
 

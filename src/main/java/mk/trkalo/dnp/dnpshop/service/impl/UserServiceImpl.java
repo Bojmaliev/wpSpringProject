@@ -2,9 +2,8 @@ package mk.trkalo.dnp.dnpshop.service.impl;
 
 import mk.trkalo.dnp.dnpshop.dto.NewOrderClientDto;
 import mk.trkalo.dnp.dnpshop.dto.address.AddressesDto;
-import mk.trkalo.dnp.dnpshop.model.LoggedUser;
-import mk.trkalo.dnp.dnpshop.model.Role;
-import mk.trkalo.dnp.dnpshop.model.User;
+import mk.trkalo.dnp.dnpshop.model.user.LoggedUser;
+import mk.trkalo.dnp.dnpshop.model.user.User;
 import mk.trkalo.dnp.dnpshop.model.payloads.request.UpdateClient;
 import mk.trkalo.dnp.dnpshop.repository.UserRepository;
 import mk.trkalo.dnp.dnpshop.service.AddressService;

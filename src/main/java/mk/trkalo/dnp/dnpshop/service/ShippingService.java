@@ -1,8 +1,6 @@
 package mk.trkalo.dnp.dnpshop.service;
 
-import mk.trkalo.dnp.dnpshop.model.ShippingMethod;
-import mk.trkalo.dnp.dnpshop.repository.ShippingRepository;
-import org.springframework.stereotype.Service;
+import mk.trkalo.dnp.dnpshop.model.order.ShippingMethod;
 
 import java.util.List;
 

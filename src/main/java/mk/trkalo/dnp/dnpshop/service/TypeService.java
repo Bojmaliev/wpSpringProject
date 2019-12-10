@@ -1,6 +1,6 @@
 package mk.trkalo.dnp.dnpshop.service;
 
-import mk.trkalo.dnp.dnpshop.model.Type;
+import mk.trkalo.dnp.dnpshop.model.product.Type;
 
 import java.util.List;
 

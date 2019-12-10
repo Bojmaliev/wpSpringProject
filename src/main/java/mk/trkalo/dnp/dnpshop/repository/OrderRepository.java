@@ -1,8 +1,8 @@
 package mk.trkalo.dnp.dnpshop.repository;
 
-import mk.trkalo.dnp.dnpshop.model.Order;
-import mk.trkalo.dnp.dnpshop.model.Status;
-import mk.trkalo.dnp.dnpshop.model.User;
+import mk.trkalo.dnp.dnpshop.model.order.Order;
+import mk.trkalo.dnp.dnpshop.model.order.Status;
+import mk.trkalo.dnp.dnpshop.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

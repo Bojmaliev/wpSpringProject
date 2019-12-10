@@ -1,4 +1,4 @@
-package mk.trkalo.dnp.dnpshop.model;
+package mk.trkalo.dnp.dnpshop.model.order;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

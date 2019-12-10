@@ -1,6 +1,6 @@
 package mk.trkalo.dnp.dnpshop;
 
-import mk.trkalo.dnp.dnpshop.model.LoggedUser;
+import mk.trkalo.dnp.dnpshop.model.user.LoggedUser;
 import mk.trkalo.dnp.dnpshop.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -1,7 +1,6 @@
 package mk.trkalo.dnp.dnpshop.service.impl;
 
-import mk.trkalo.dnp.dnpshop.model.LoggedUser;
-import mk.trkalo.dnp.dnpshop.model.User;
+import mk.trkalo.dnp.dnpshop.model.user.LoggedUser;
 import mk.trkalo.dnp.dnpshop.security.CustomUserDetails;
 import mk.trkalo.dnp.dnpshop.service.LoggedUserService;
 import mk.trkalo.dnp.dnpshop.service.UserService;
